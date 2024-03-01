@@ -43,12 +43,12 @@ public class GameManager : MonoBehaviour
 
     void Shuffle()
     {
-
+        
     }
 
     void AI_Turn()
     {
-
+       //Ask for a card in their deck, more off a type of card = more likely to ask for that card
     }
 
 
