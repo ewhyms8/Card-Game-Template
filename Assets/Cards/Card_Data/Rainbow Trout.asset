@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Rainbow Trout
   m_EditorClassIdentifier: 
   card_name: Rainbow Trout
-  description: Pacific Ocean in Asia and North America
+  description: Invasive Species
   health: 1
   cost: 1
   damage: 1
