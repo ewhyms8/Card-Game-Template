@@ -6,6 +6,8 @@ using UnityEngine.UI;
 public class MyHand : MonoBehaviour
 {
     public Button m_firstButton;
+    public bool cardAddedToHand;
+    public List<Card> playerDeck = new List<Card>();
 
     public hud hud;
     // Start is called before the first frame update
@@ -29,5 +31,6 @@ public class MyHand : MonoBehaviour
     {
         print("button pressed");
         hud.remCardNum -= 1;
+        cardAddedToHand = true;
     }
 }

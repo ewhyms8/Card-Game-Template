@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class EmilyCard : MonoBehaviour
 {
     public Card_data data;
+    public bool hasBeenplayed;
 
     public string card_name;
     public string description;
@@ -19,6 +20,8 @@ public class EmilyCard : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        hasBeenplayed = false;
+        // this will become true when matched with another of its type
         card_name = data.card_name;
         description = data.description;
         sprite = data.sprite;
