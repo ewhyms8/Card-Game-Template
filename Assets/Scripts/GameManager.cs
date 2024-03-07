@@ -1,6 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class GameManager : MonoBehaviour
 {
@@ -38,13 +41,17 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         deck.Add(trout);
+        Deal();
+        Instantiate(trout);
     }
 
     // Update is called once per frame
     void Update()
     {
-        whatCard = Random.Range(1, 2);
+        
+        whatCard = Random.Range(1, 3);
         AI_Turn();
+        
     }
 
     void Deal()
@@ -53,17 +60,29 @@ public class GameManager : MonoBehaviour
         {
             player_deck.Add(trout);
             deck.Remove(trout);
+            print("gave trout to player");
+            Instantiate(trout);
         }
 
         if (whatCard == 2)
         {
             player_deck.Add(GiantSquid);
             deck.Remove(GiantSquid);
+            print("gave giant squid to player");
+            Instantiate(GiantSquid);
+        }
+
+        if (whatCard == 3)
+        {
+            player_deck.Add(Jellyfish);
+            deck.Remove(Jellyfish);
+            print("gave jellyfish to player");
         }
     }
 
     void Shuffle()
     {
+        
         
     }
 
@@ -82,13 +101,15 @@ public class GameManager : MonoBehaviour
         else
         {
             print("Do you have any Rainbow Trout?");
+            if (player_deck.Contains(trout))
+            {
+                player_deck.Remove(trout);
+                ai_deck.Add(trout);
+            }
         }
         
         
         //Ask for a card in their deck, more off a type of card = more likely to ask for that card
     }
-
-
-
     
 }
