@@ -19,7 +19,7 @@ public class GameManager : MonoBehaviour
 
 
     private float whatCard;
-
+    private float AICard;
 
     private void Awake()
     {
@@ -44,11 +44,11 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         whatCard = Random.Range(1, 2);
+        AI_Turn();
     }
 
     void Deal()
     {
-
         if (whatCard == 1)
         {
             player_deck.Add(trout);
@@ -69,7 +69,23 @@ public class GameManager : MonoBehaviour
 
     void AI_Turn()
     {
-       //Ask for a card in their deck, more off a type of card = more likely to ask for that card
+        AICard = Random.Range(1, 13);
+        if (AICard == 2)
+        {
+            print("Do you have any giant squid?");
+            if (player_deck.Contains(GiantSquid))
+            {
+                player_deck.Remove(GiantSquid);
+                ai_deck.Add(GiantSquid);
+            }
+        }
+        else
+        {
+            print("Do you have any Rainbow Trout?");
+        }
+        
+        
+        //Ask for a card in their deck, more off a type of card = more likely to ask for that card
     }
 
 
