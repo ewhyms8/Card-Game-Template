@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,6 +9,10 @@ public class EmilyCard : MonoBehaviour
 {
     public Card_data data;
     public bool hasBeenplayed;
+
+    public int handIndex;
+
+    private GameManager gm;
 
     public string card_name;
     public string description;
@@ -20,7 +25,7 @@ public class EmilyCard : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        hasBeenplayed = false;
+        gm = FindObjectOfType<GameManager>();
         // this will become true when matched with another of its type
         card_name = data.card_name;
         description = data.description;
@@ -35,5 +40,23 @@ public class EmilyCard : MonoBehaviour
     void Update()
     {
         
+    }
+
+    private void OnMouseDown()
+    {
+        if (hasBeenplayed == false)
+        {
+            //player can select card to go into discard pile -> move card to another list
+            // if ^ hasBeenPlayed = true;
+            //gm.availableCardSlots[handIndex] = true;
+            //Invoke("MoveToDiscardPile", 2f);
+            //Player points ++
+        }
+    }
+
+    void MoveToDiscardPile()
+    {
+        //gm.discard_pile.Add(this);
+        //5:49
     }
 }

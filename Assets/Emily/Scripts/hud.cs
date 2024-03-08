@@ -26,6 +26,6 @@ public class hud : MonoBehaviour
     {
         oponentsPoints.text = "Opponents Total Points: " + oPoints;
         yourPoints.text = "Your Total Points: " + yPoints;
-        numCardsRemaining.text = "Cards remaining: " + remCardNum;
+        numCardsRemaining.text = "" + remCardNum;
     }
 }

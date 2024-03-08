@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
 public class GameManager : MonoBehaviour
@@ -24,6 +25,10 @@ public class GameManager : MonoBehaviour
     private float whatCard;
     private float AICard;
 
+
+    public Transform[] myHand;
+    public bool[] availableCardSlots;
+
     private void Awake()
     {
         if (gm != null && gm != this)
@@ -42,7 +47,10 @@ public class GameManager : MonoBehaviour
     {
         deck.Add(trout);
         Deal();
-        Instantiate(trout);
+        if (trout != null)
+        {
+            Instantiate(trout);
+        }
     }
 
     // Update is called once per frame
@@ -53,6 +61,7 @@ public class GameManager : MonoBehaviour
         AI_Turn();
         
     }
+
 
     void Deal()
     {
@@ -111,5 +120,29 @@ public class GameManager : MonoBehaviour
         
         //Ask for a card in their deck, more off a type of card = more likely to ask for that card
     }
+    
+    public void DrawCard()
+    {
+        /* if(deck.Count >= 1) {
+                Card randCard = deck[Random.Range(0, deck.Count)];
+                
+                for (int i = 0; i < availableCardSlots.Length; i++)
+                {
+                    if(availableCardSlots[i] == true) {
+                        randCard.gameObject.SetActive(true);
+                        randCard.handIndex = i;
+                        
+                        //this is where empty card slots come in
+                        randCard.transform.position = cardSlots[i].position;
+                        availableCardSlots[i] = false;
+                        deck.Remove(randCard); //<- this will not be rand, it will be a group of 4
+                        return;
+                        // 3:29 - time needed for hierarchy part
+                    }
+                }
+            }
+         */
+        
+    }//left off at 5:49, card is EmilyCard
     
 }
