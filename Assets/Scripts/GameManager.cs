@@ -11,20 +11,20 @@ public class GameManager : MonoBehaviour
     public static GameManager gm;
     public List<Card> deck = new List<Card>(52);
     public List<Card> player_deck = new List<Card>();
-    public List<Card> ai_deck = new List<Card>();
+    //public List<Card> ai_deck = new List<Card>();
     public List<Card> player_hand = new List<Card>();
     public List<Card> ai_hand = new List<Card>();
     public List<Card> discard_pile = new List<Card>();
 
+    
+    public Card temp;
+    public Card card;
 
-    public Card trout;
-    public Card GiantSquid;
-    public Card Jellyfish;
-
-
-    private float whatCard;
-    private float AICard;
-
+    private int whatCard;
+    
+    private int AICard;
+    public int handSize;
+    public float amount;
 
     public Transform[] myHand;
     public bool[] availableCardSlots;
@@ -45,48 +45,51 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        deck.Add(trout);
-        Deal();
-        if (trout != null)
-        {
-            Instantiate(trout);
-        }
+       Deal();
+        
     }
 
     // Update is called once per frame
     void Update()
     {
         
-        whatCard = Random.Range(1, 3);
-        AI_Turn();
+      
         
     }
 
 
     void Deal()
     {
-        if (whatCard == 1)
+        for (int i = 0; i < handSize; i++)
         {
-            player_deck.Add(trout);
-            deck.Remove(trout);
-            print("gave trout to player");
-            Instantiate(trout);
+            whatCard = Random.Range(0, deck.Count);
+            temp = deck[whatCard];
+            deck.Remove(temp);
+            player_hand.Add(temp);
+            player_deck.Add(temp);
+            temp = null;
+            
+            
+            whatCard = Random.Range(0, deck.Count);
+            temp = deck[whatCard];
+            deck.Remove(temp);
+            ai_hand.Add(temp);
+            temp = null;
         }
 
-        if (whatCard == 2)
+        for (int i = 0; i < handSize; i++)
         {
-            player_deck.Add(GiantSquid);
-            deck.Remove(GiantSquid);
-            print("gave giant squid to player");
-            Instantiate(GiantSquid);
+            card = player_deck[0];
+            Instantiate(card , new Vector3(amount, 93, 0));
+            amount += 100;
+            player_deck.Remove(card);
         }
+        
+    }
 
-        if (whatCard == 3)
-        {
-            player_deck.Add(Jellyfish);
-            deck.Remove(Jellyfish);
-            print("gave jellyfish to player");
-        }
+    private void Instantiate(Card original, Vector3 position)
+    {
+        throw new NotImplementedException();
     }
 
     void Shuffle()
@@ -94,7 +97,7 @@ public class GameManager : MonoBehaviour
         
         
     }
-
+/*
     void AI_Turn()
     {
         AICard = Random.Range(1, 13);
@@ -143,6 +146,6 @@ public class GameManager : MonoBehaviour
             }
          */
         
-    }//left off at 5:49, card is EmilyCard
-    
+   // }//left off at 5:49, card is EmilyCard
+
 }
