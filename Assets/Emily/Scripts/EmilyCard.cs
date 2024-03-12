@@ -57,6 +57,7 @@ public class EmilyCard : MonoBehaviour
     void MoveToDiscardPile()
     {
         //gm.discard_pile.Add(this);
-        //5:49
+        gameObject.SetActive(false);
+        
     }
 }

@@ -30,7 +30,7 @@ public class MyHand : MonoBehaviour
     void TaskOnClick()
     {
         print("button pressed");
-        hud.remCardNum -= 1;
+        hud.deckSize -= 1;
         cardAddedToHand = true;
     }
 }
