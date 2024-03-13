@@ -5,6 +5,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using Unity.Mathematics;
 using Random = UnityEngine.Random;
 
 public class GameManager : MonoBehaviour
@@ -16,10 +17,10 @@ public class GameManager : MonoBehaviour
     public List<Card> player_hand = new List<Card>();
     public List<Card> ai_hand = new List<Card>();
     public List<Card> discard_pile = new List<Card>();
-
+    public Transform _Canvas;
     
     public Card temp;
-    public Card card;
+    //public Card card;
 
     private int whatCard;
     
@@ -80,10 +81,12 @@ public class GameManager : MonoBehaviour
 
         for (int i = 0; i < handSize; i++)
         {
-            card = player_hand[0]; // player_hand changed
-            Instantiate(card , new Vector3(amount, 93, 0));
-            amount += 100;
-            player_hand.Remove(card); // player hand changed
+            //Card card = Instantiate(player_hand[i] , new Vector3(amount, 93, 0));
+            Card card = Instantiate(player_hand[i], new Vector3(amount, 93, 0), quaternion.identity);
+            card.transform.SetParent(_Canvas);
+            amount += 300;
+            player_hand.Remove(card);
+            card = null; // player hand changed
         }
         
     }

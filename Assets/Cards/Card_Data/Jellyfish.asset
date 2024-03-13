@@ -18,3 +18,4 @@ MonoBehaviour:
   cost: 3
   damage: 3
   sprite: {fileID: 21300000, guid: c273c989d1cfa4d83aadc3e01247106b, type: 3}
+  background: {fileID: 21300000, guid: f488cb61e626b4aa6a86bdf7fac85003, type: 3}

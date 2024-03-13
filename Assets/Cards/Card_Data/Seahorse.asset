@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   card_name: Seahorse
   description: Terrible Swimmers
-  health: 0
+  health: 4
   cost: 4
   damage: 4
   sprite: {fileID: 21300000, guid: a77e0715552b748d9b664ac98bd8ceb8, type: 3}
+  background: {fileID: 21300000, guid: 5d0b894a3d6e5479d8ef2530d742a9da, type: 3}
