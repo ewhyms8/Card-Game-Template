@@ -20,13 +20,13 @@ public class GameManager : MonoBehaviour
     public Transform _Canvas;
     
     public Card temp;
-    //public Card card;
-
     private int whatCard;
     
     private int AICard;
     public int handSize;
     public float amount;
+    private int AiHandSize;
+    
 
     public Transform[] myHand; // cardSlots in vid
     public bool[] availableCardSlots;
@@ -81,12 +81,11 @@ public class GameManager : MonoBehaviour
 
         for (int i = 0; i < handSize; i++)
         {
-            //Card card = Instantiate(player_hand[i] , new Vector3(amount, 93, 0));
             Card card = Instantiate(player_hand[i], new Vector3(amount, 93, 0), quaternion.identity);
             card.transform.SetParent(_Canvas);
-            amount += 300;
+            amount += 200;
             player_hand.Remove(card);
-            card = null; // player hand changed
+            card = null; 
         }
         
     }
@@ -111,44 +110,20 @@ public class GameManager : MonoBehaviour
     }
     
 
-    private void Instantiate(Card original, Vector3 position)
-    {
-        throw new NotImplementedException();
-    }
-
     void Shuffle()
     {
         
         
     }
-/*
+
     void AI_Turn()
     {
-        AICard = Random.Range(1, 13);
-        if (AICard == 2)
-        {
-            print("Do you have any giant squid?");
-            if (player_hand.Contains(GiantSquid))
-            {
-                player_hand.Remove(GiantSquid);
-                ai_hand.Add(GiantSquid);
-            }
-        }
-        else
-        {
-            print("Do you have any Rainbow Trout?");
-            if (player_hand.Contains(trout))
-            {
-                player_hand.Remove(trout);
-                ai_hand.Add(trout);
-            }
-        }
-        
-        
-        //Ask for a card in their deck, more off a type of card = more likely to ask for that card
+        AiHandSize = 
+     
+
     }
-    */
-    
-    
+
+
+
 
 }
