@@ -30,7 +30,6 @@ public class GameManager : MonoBehaviour
 
     public Transform[] myHand; // cardSlots in vid
     public bool[] availableCardSlots;
-    // get hand index from EmilyCard
     
 
     private void Awake()
@@ -50,6 +49,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
        Deal();
+       
     }
 
     // Update is called once per frame
@@ -99,7 +99,6 @@ public class GameManager : MonoBehaviour
             {
                 if(availableCardSlots[i] == true) {
                     randCard.gameObject.SetActive(true);
-                    //randCard.handIndex = i;
                     randCard.transform.position = myHand[i].position;
                     availableCardSlots[i] = false;
                     deck.Remove(randCard); //<- this will not be rand, it will be a group of 4
@@ -118,7 +117,7 @@ public class GameManager : MonoBehaviour
 
     void AI_Turn()
     {
-        AiHandSize = 
+        //AiHandSize = 7f;
      
 
     }
