@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Swordfish
   m_EditorClassIdentifier: 
   card_name: Swordfish
-  description: Swim 60mph
+  description: Top Speed of 50mph
   health: 5
   cost: 5
   damage: 5

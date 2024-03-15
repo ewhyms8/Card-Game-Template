@@ -20,7 +20,7 @@ public class MyHand : MonoBehaviour
 
     void Update()
     {
-        /* if 2 same cards in hand, add to hud.yPoints and remove from hand
+        /* if 4 same cards in hand, add to hud.yPoints and remove from hand
          draw from pile (by click?), hud.remCardNum -= 1
          add random card from array to hand
          */

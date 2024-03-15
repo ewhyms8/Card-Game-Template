@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Manta Ray
   m_EditorClassIdentifier: 
   card_name: Manta Ray
-  description: 
+  description: Among the Largest Fish in the Ocean
   health: 11
   cost: 11
   damage: 11

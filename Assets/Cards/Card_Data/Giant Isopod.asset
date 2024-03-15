@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Giant Isopod
   m_EditorClassIdentifier: 
   card_name: Giant Isopod
-  description: ...
+  description: Breath through their Legs
   health: 10
   cost: 10
   damage: 10

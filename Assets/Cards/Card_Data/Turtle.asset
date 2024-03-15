@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Turtle
   m_EditorClassIdentifier: 
   card_name: Turtle
-  description: ...
+  description: Swam With Dinosaurs
   health: 9
   cost: 9
   damage: 9

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Angelfish
   m_EditorClassIdentifier: 
   card_name: Angelfish
-  description: 
+  description: Females Change to Males over their Lifetimes
   health: 12
   cost: 12
   damage: 12

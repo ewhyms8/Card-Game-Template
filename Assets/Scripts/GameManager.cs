@@ -24,7 +24,7 @@ public class GameManager : MonoBehaviour
     
     private int AICard;
     public int handSize;
-    public float amount;
+    private float amount;
     private int AiHandSize;
     
 
@@ -49,7 +49,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
        Deal();
-       
+       amount = -250;
     }
 
     // Update is called once per frame
@@ -83,7 +83,7 @@ public class GameManager : MonoBehaviour
         {
             Card card = Instantiate(player_hand[i], new Vector3(amount, 93, 0), quaternion.identity);
             card.transform.SetParent(_Canvas);
-            amount += 200;
+            amount += 100;
             player_hand.Remove(card);
             card = null; 
         }
