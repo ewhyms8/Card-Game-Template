@@ -254,29 +254,28 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   deck:
-  - {fileID: 2563478007558998501, guid: 7cd9fd7e0979b4728b8f3f9d0b05bb75, type: 3}
-  - {fileID: 2563478007558998501, guid: 7cd9fd7e0979b4728b8f3f9d0b05bb75, type: 3}
-  - {fileID: 61553063184892929, guid: ccf20279cd505464c94eea58fb8fe0e6, type: 3}
-  - {fileID: 61553063184892929, guid: ccf20279cd505464c94eea58fb8fe0e6, type: 3}
-  - {fileID: 1687389638411159064, guid: cc0c026914f8741afb40dee1cc31ec95, type: 3}
-  - {fileID: 1687389638411159064, guid: cc0c026914f8741afb40dee1cc31ec95, type: 3}
-  - {fileID: 1753135567597701592, guid: 7a3a3a8ce26c9463690e1447e7050d91, type: 3}
-  - {fileID: 1753135567597701592, guid: 7a3a3a8ce26c9463690e1447e7050d91, type: 3}
-  - {fileID: 5885889595804781282, guid: 2dbf0ab1c47a246f1a5df04f8d129142, type: 3}
-  - {fileID: 5885889595804781282, guid: 2dbf0ab1c47a246f1a5df04f8d129142, type: 3}
-  - {fileID: 6850173979334797409, guid: ab63962b4d8ae4eeeab826edc20c7d2b, type: 3}
-  - {fileID: 6850173979334797409, guid: ab63962b4d8ae4eeeab826edc20c7d2b, type: 3}
-  - {fileID: 6107819884492983327, guid: 34418bb1d19b84235b6f3c66c0501ae5, type: 3}
-  - {fileID: 6107819884492983327, guid: 34418bb1d19b84235b6f3c66c0501ae5, type: 3}
-  - {fileID: 1653657976654046167, guid: 8b2dac607cf2c4df08c85c148da22e11, type: 3}
-  - {fileID: 1653657976654046167, guid: 8b2dac607cf2c4df08c85c148da22e11, type: 3}
+  - {fileID: 3868079443633635793, guid: 2dbf0ab1c47a246f1a5df04f8d129142, type: 3}
+  - {fileID: 3699133253471731442, guid: ab63962b4d8ae4eeeab826edc20c7d2b, type: 3}
+  - {fileID: 31800954875952318, guid: 34418bb1d19b84235b6f3c66c0501ae5, type: 3}
+  - {fileID: 4146909293770495355, guid: 8b2dac607cf2c4df08c85c148da22e11, type: 3}
+  - {fileID: 4392750370861808488, guid: 1645f9b0823d24f42a0893aa97faa600, type: 3}
+  - {fileID: 7180882006985029620, guid: 1de7eac17d5ed4697b27d0dadf1fe3e1, type: 3}
+  - {fileID: 6903489568801116373, guid: 7cd9fd7e0979b4728b8f3f9d0b05bb75, type: 3}
+  - {fileID: 4740267111011295925, guid: ccf20279cd505464c94eea58fb8fe0e6, type: 3}
+  - {fileID: 1200343848837333013, guid: cc0c026914f8741afb40dee1cc31ec95, type: 3}
+  - {fileID: 2962881609570378874, guid: 7a3a3a8ce26c9463690e1447e7050d91, type: 3}
+  - {fileID: 1188032380280242488, guid: 6343c1cefb2c74cef91c54b73d6be272, type: 3}
+  - {fileID: 4740267111011295925, guid: ccf20279cd505464c94eea58fb8fe0e6, type: 3}
+  - {fileID: 3699133253471731442, guid: ab63962b4d8ae4eeeab826edc20c7d2b, type: 3}
+  - {fileID: 31800954875952318, guid: 34418bb1d19b84235b6f3c66c0501ae5, type: 3}
+  - {fileID: 1188032380280242488, guid: 6343c1cefb2c74cef91c54b73d6be272, type: 3}
+  - {fileID: 6903489568801116373, guid: 7cd9fd7e0979b4728b8f3f9d0b05bb75, type: 3}
   player_hand: []
   ai_hand: []
   discard_pile: []
   _Canvas: {fileID: 201778115}
   temp: {fileID: 0}
   handSize: 7
-  amount: -250
   myHand: []
   availableCardSlots: 
 --- !u!4 &593536075
