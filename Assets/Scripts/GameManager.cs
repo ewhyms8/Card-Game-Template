@@ -26,7 +26,9 @@ public class GameManager : MonoBehaviour
     public int handSize;
     private float amount;
     private int AiHandSize;
-    
+
+    public bool playerTurn = true;
+    public hud hud;
 
     public Transform[] myHand; // cardSlots in vid
     public bool[] availableCardSlots;
@@ -50,12 +52,17 @@ public class GameManager : MonoBehaviour
     {
        Deal();
        amount = -250;
+       hud = GameObject.FindObjectOfType<hud>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (playerTurn = false)
+        {
+            print("player turn over");
+            AI_Turn();
+        }
         
     }
 
@@ -92,15 +99,16 @@ public class GameManager : MonoBehaviour
 
     public void DrawCard()
     {
-        if(deck.Count >= 1) {
+        if(deck.Count >= 1)
+        {
             Card randCard = deck[Random.Range(0, deck.Count)];
-                
             for (int i = 0; i < availableCardSlots.Length; i++)
             {
-                if(availableCardSlots[i] == true) {
-                    randCard.gameObject.SetActive(true);
-                    randCard.transform.position = myHand[i].position;
+                if(availableCardSlots[i] == true)
+                {
+                    randCard = Instantiate(randCard, myHand[i].position, quaternion.identity);
                     availableCardSlots[i] = false;
+                    player_hand.Add(temp);
                     deck.Remove(randCard); //<- this will not be rand, it will be a group of 4
                     return;
                 }
@@ -108,20 +116,29 @@ public class GameManager : MonoBehaviour
         }
     }
     
-
-    void Shuffle()
-    {
-        
-        
-    }
-
     void AI_Turn()
     {
         //AiHandSize = 7f;
-     
+        //hud.aiText = "Do you have a " + card type;
+        /*ask player for card matching one in hand
+        if(player_hand has card){
+            ai_hand.Add(card)
+            player_hand.Remove(card)
+        }
+        else{
+            deck.Remove(card)
+            ai_hand.Add(card)
+        }
+        */
+        //check if 4 of a kind, if so add hud.oPoints += 1; & playerTurn = true;
+
 
     }
 
+    public void PlayerTurn()
+    {
+        playerTurn = false;
+    }
 
 
 

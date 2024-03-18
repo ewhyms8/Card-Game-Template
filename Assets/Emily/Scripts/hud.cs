@@ -13,6 +13,8 @@ public class hud : MonoBehaviour
     public TextMeshProUGUI deckSizeText;
     public float deckSize;
     
+    public TextMeshProUGUI aiText;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -27,5 +29,6 @@ public class hud : MonoBehaviour
         oponentsPoints.text = "Opponents Total Points: " + oPoints;
         yourPoints.text = "Your Total Points: " + yPoints;
         deckSizeText.text = "" + deckSize;
+        aiText.text = "waiting on you";
     }
 }
