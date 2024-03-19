@@ -51,14 +51,14 @@ public class GameManager : MonoBehaviour
     void Start()
     {
        Deal();
-       amount = -250;
+       amount = 0;
        hud = GameObject.FindObjectOfType<hud>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (playerTurn = false)
+        if (playerTurn == false)
         {
             print("player turn over");
             AI_Turn();
@@ -88,7 +88,7 @@ public class GameManager : MonoBehaviour
 
         for (int i = 0; i < handSize; i++)
         {
-            Card card = Instantiate(player_hand[i], new Vector3(amount, 93, 0), quaternion.identity);
+            Card card = Instantiate(player_hand[i], new Vector3(-300 + amount, 93, 0), quaternion.identity);
             card.transform.SetParent(_Canvas);
             amount += 100;
             player_hand.Remove(card);
@@ -119,11 +119,17 @@ public class GameManager : MonoBehaviour
     void AI_Turn()
     {
         //AiHandSize = 7f;
+        //Random.Range(0, Ai_hand.Count);
+        
         //hud.aiText = "Do you have a " + card type;
+        
         /*ask player for card matching one in hand
-        if(player_hand has card){
+
+        if(player_hand.Contains(card ai wants)
+        {
             ai_hand.Add(card)
             player_hand.Remove(card)
+        
         }
         else{
             deck.Remove(card)
@@ -132,14 +138,33 @@ public class GameManager : MonoBehaviour
         */
         //check if 4 of a kind, if so add hud.oPoints += 1; & playerTurn = true;
 
-
     }
 
     public void PlayerTurn()
     {
-        playerTurn = false;
+        
+        /*
+        click on card to ask for one
+        
+        check for that card in ai_hand
+        if(ai_hand.Contains(card you want)
+        {
+            if ai has card move from ai_hand to player_hand
+            ai_hand.Remove(card);
+            player_hand.Add(Card);
+        }
+        
+        else
+        {
+             if not in ai hand give card to player from draw card have player end turn
+             DrawCard();
+             playerTurn = false;
+        }
+        
+        check for matches
+        */
     }
 
-
+    
 
 }

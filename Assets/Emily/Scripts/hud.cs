@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -31,4 +32,5 @@ public class hud : MonoBehaviour
         deckSizeText.text = "" + deckSize;
         aiText.text = "waiting on you";
     }
+    
 }
