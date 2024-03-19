@@ -17,5 +17,5 @@ MonoBehaviour:
   health: 5
   cost: 5
   damage: 5
-  sprite: {fileID: 21300000, guid: 369cdd3fd6ac346e0ac9c2589dea771d, type: 3}
-  background: {fileID: 21300000, guid: 2fdb91ecd8be0486483f559761e9f609, type: 3}
+  sprite: {fileID: 21300000, guid: 977bb0dc35eba4f31bbf332a520c6f38, type: 3}
+  background: {fileID: 21300000, guid: fed6565b33871469f81f0e1fb3cfe6f5, type: 3}
