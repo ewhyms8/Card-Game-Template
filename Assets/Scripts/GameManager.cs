@@ -23,7 +23,7 @@ public class GameManager : MonoBehaviour
     private int whatCard;
     
     private int AICard;
-    public int handSize;
+    private int handSize = 7;
     private float amount;
     private int AiHandSize;
 
@@ -88,7 +88,7 @@ public class GameManager : MonoBehaviour
 
         for (int i = 0; i < handSize; i++)
         {
-            Card card = Instantiate(player_hand[i], new Vector3(-300 + amount, 93, 0), quaternion.identity);
+            Card card = Instantiate(player_hand[i], new Vector3(-300 + amount, 60, 0), quaternion.identity);
             card.transform.SetParent(_Canvas);
             amount += 100;
             player_hand.Remove(card);
