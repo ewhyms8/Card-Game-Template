@@ -107,6 +107,7 @@ public class GameManager : MonoBehaviour
                 if(availableCardSlots[i] == true)
                 {
                     randCard = Instantiate(randCard, myHand[i].position, quaternion.identity);
+                    randCard.handIndex = i;
                     availableCardSlots[i] = false;
                     player_hand.Add(temp);
                     deck.Remove(randCard); //<- this will not be rand, it will be a group of 4
@@ -119,23 +120,23 @@ public class GameManager : MonoBehaviour
     void AI_Turn()
     {
         //AiHandSize = 7f;
-        //Random.Range(0, Ai_hand.Count);
-        
-        //hud.aiText = "Do you have a " + card type;
-        
-        /*ask player for card matching one in hand
-
-        if(player_hand.Contains(card ai wants)
+        int aiWant = Random.Range(0, ai_hand.Count);
+        for (int i = 0; i < player_hand.Count; i++)
         {
-            ai_hand.Add(card)
-            player_hand.Remove(card)
-        
+            //same card? or just same card place in hand?
+            Card hasCard = player_hand[i];
+            if (player_hand.Contains(hasCard))
+            {
+                ai_hand.Add(hasCard);
+                player_hand.Remove(hasCard);
+            }
+            else
+            {
+                Card randCard = deck[Random.Range(0, deck.Count)];
+                deck.Remove(randCard);
+                ai_hand.Add(randCard);
+            }
         }
-        else{
-            deck.Remove(card)
-            ai_hand.Add(card)
-        }
-        */
         //check if 4 of a kind, if so add hud.oPoints += 1; & playerTurn = true;
 
     }

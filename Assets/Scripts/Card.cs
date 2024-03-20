@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -20,11 +21,17 @@ public class Card : MonoBehaviour
     public TextMeshProUGUI costText;
     public TextMeshProUGUI damageText;
     public Image spriteImage;
+
+    public bool hasBeenPlayed;
+    public int handIndex;
+    private GameManager gm;
         
 
     // Start is called before the first frame update
     void Start()
     {
+        gm = FindObjectOfType<GameManager>();
+        
         card_name = data.card_name;
         description = data.description;
         health = data.health;
@@ -44,5 +51,20 @@ public class Card : MonoBehaviour
     void Update()
     {
         
+    }
+
+    private void OnMouseDown()
+    {
+        if (hasBeenPlayed == false)
+        {
+            hasBeenPlayed = true;
+            gm.availableCardSlots[handIndex] = true;
+            //Invoke("MoveToDisscardPile", 2f);
+        }
+    }
+
+    void MoveToDiscardPile()
+    {
+        //gm.discard_pile.Add(the four cards);
     }
 }
