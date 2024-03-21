@@ -6,6 +6,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using Unity.Mathematics;
+using Unity.VisualScripting;
 using Random = UnityEngine.Random;
 
 public class GameManager : MonoBehaviour
@@ -29,6 +30,8 @@ public class GameManager : MonoBehaviour
 
     public bool playerTurn = true;
     public hud hud;
+    private bool playerSelect;
+    private GameObject playerSelected;
 
     public Transform[] myHand; // cardSlots in vid
     public bool[] availableCardSlots;
@@ -63,6 +66,20 @@ public class GameManager : MonoBehaviour
             print("player turn over");
             AI_Turn();
         }
+        /*
+         if (player hand or ai_hand.Contains 4 same card.health -> 
+         public system.collections.generic.list<player_hand> FindAll (Predicate<T> match);
+         list<player_hand> results = player_hand.FindAll(jellyfish) this for all possibilities
+            if results != 4
+            {
+                no points
+            }
+            else
+            {
+                hud.player or ai points += 1; 
+            }
+         }
+         */
         
     }
 
@@ -123,6 +140,13 @@ public class GameManager : MonoBehaviour
         int aiWant = Random.Range(0, ai_hand.Count);
         for (int i = 0; i < player_hand.Count; i++)
         {
+            Card aiCard = ai_hand[i];
+            print("click on a card");
+            //player clicks on cards -> check if card value is the same as the one being asked
+            if (aiCard.data.health == playerSelected.GetComponent<Card_data>().health)
+            {
+                //health is temp, assign number to each card to check if same
+            }
             //same card? or just same card place in hand?
             Card hasCard = player_hand[i];
             if (player_hand.Contains(hasCard))
@@ -166,6 +190,11 @@ public class GameManager : MonoBehaviour
         */
     }
 
-    
-
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (playerSelect = true)
+        {
+            playerSelected = other.gameObject;
+        }
+    }
 }
