@@ -461,6 +461,7 @@ MonoBehaviour:
   deckSizeText: {fileID: 1472555761}
   deckSize: 0
   aiText: {fileID: 1394423014}
+  WC: {fileID: 0}
 --- !u!1 &481793384
 GameObject:
   m_ObjectHideFlags: 0
@@ -2273,8 +2274,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   deck: []
-  player_hand: []
-  ai_hand: []
+  player_hand:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  ai_hand:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   discard_pile: []
   _Canvas: {fileID: 0}
   temp: {fileID: 0}

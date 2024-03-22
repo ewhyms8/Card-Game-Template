@@ -56,6 +56,7 @@ public class GameManager : MonoBehaviour
        Deal();
        amount = 0;
        hud = GameObject.FindObjectOfType<hud>();
+       PlayerTurn();
     }
 
     // Update is called once per frame
@@ -167,27 +168,19 @@ public class GameManager : MonoBehaviour
 
     public void PlayerTurn()
     {
-        
-        /*
-        click on card to ask for one
-        
-        check for that card in ai_hand
-        if(ai_hand.Contains(card you want)
+        print("Player Turn :)");
+        if (ai_hand.Contains(hud.WC))
         {
-            if ai has card move from ai_hand to player_hand
-            ai_hand.Remove(card);
-            player_hand.Add(Card);
+            ai_hand.Remove(hud.WC);
+            player_hand.Add(hud.WC);
         }
-        
         else
         {
-             if not in ai hand give card to player from draw card have player end turn
-             DrawCard();
-             playerTurn = false;
+            print("Go Fish. Draw a card and end your turn");
         }
         
-        check for matches
-        */
+        //check for matches in player_hand
+        
     }
 
     private void OnCollisionEnter2D(Collision2D other)

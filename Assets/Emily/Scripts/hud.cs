@@ -15,6 +15,8 @@ public class hud : MonoBehaviour
     public float deckSize;
     
     public TextMeshProUGUI aiText;
+    public Card WC;
+    
     
     // Start is called before the first frame update
     void Start()
@@ -22,6 +24,7 @@ public class hud : MonoBehaviour
         oPoints = 0;
         yPoints = 0;
         deckSize = 52;
+        
     }
 
     // Update is called once per frame
