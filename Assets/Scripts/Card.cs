@@ -25,6 +25,7 @@ public class Card : MonoBehaviour
     public bool hasBeenPlayed;
     public int handIndex;
     private GameManager gm;
+    public hud hud;
         
 
     // Start is called before the first frame update

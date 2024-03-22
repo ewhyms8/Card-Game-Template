@@ -333,6 +333,8 @@ MonoBehaviour:
   costText: {fileID: 2053856350618198995}
   damageText: {fileID: 47691824821851160}
   spriteImage: {fileID: 5203735266733756228}
+  hasBeenPlayed: 0
+  handIndex: 0
 --- !u!61 &-2940693324811628365
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -362,7 +364,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
