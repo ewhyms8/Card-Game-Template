@@ -12,7 +12,7 @@ using Random = UnityEngine.Random;
 public class GameManager : MonoBehaviour
 {
     public static GameManager gm;
-    public List<Card> deck = new List<Card>(52);
+    public List<Card> deck;// = new List<Card>(52);
     //public List<Card> player_deck = new List<Card>();
     //public List<Card> ai_deck = new List<Card>();
     public List<Card> player_hand = new List<Card>();
@@ -68,16 +68,13 @@ public class GameManager : MonoBehaviour
             AI_Turn();
         }
         /*
-         if (player hand or ai_hand.Contains 4 same card.health -> 
-         public system.collections.generic.list<player_hand> FindAll (Predicate<T> match);
-         list<player_hand> results = player_hand.FindAll(jellyfish) this for all possibilities
-            if results != 4
+         if (player_hand.Contains or ai_hand.Contains 4 same card.health -> 
+            for (int x = 0; x < handSize; x++)
             {
-                no points
-            }
-            else
-            {
-                hud.player or ai points += 1; 
+                if card.data.health == othercard.data.health and there are 4
+                {
+                    _hand.Remove(all 4 cards)
+                }
             }
          }
          */
@@ -87,23 +84,24 @@ public class GameManager : MonoBehaviour
 
     void Deal()
     {
+       // print(deck.Count);
         for (int i = 0; i < handSize; i++)
         {
             whatCard = Random.Range(0, deck.Count);
             temp = deck[whatCard];
-            deck.Remove(temp);
+            deck.Remove(temp);//might cause issues towards the end of the deck
             player_hand.Add(temp);
             //player_deck.Add(temp); 
             temp = null;
             
-            
             whatCard = Random.Range(0, deck.Count);
             temp = deck[whatCard];
-            deck.Remove(temp);
+            deck.Remove(temp);//might cause issues towards the end of the deck
             ai_hand.Add(temp);
             temp = null;
         }
 
+        // move this to update, this only occurs when the func deal is called to which is once :)
         for (int i = 0; i < handSize; i++)
         {
             Card card = Instantiate(player_hand[i], new Vector3(-300 + amount, 60, 0), quaternion.identity);
@@ -111,6 +109,7 @@ public class GameManager : MonoBehaviour
             amount += 100;
             player_hand.Remove(card);
             card = null; 
+            // I don't think this needs a return; because we want it going constantly
         }
         
     }
@@ -137,47 +136,59 @@ public class GameManager : MonoBehaviour
     
     void AI_Turn()
     {
+        
         //AiHandSize = 7f;
         int aiWant = Random.Range(0, ai_hand.Count);
-        for (int i = 0; i < player_hand.Count; i++)
+        
+        Card aiCard = ai_hand[aiWant];
+        print("click on a card");
+
+        //player clicks on cards -> check if card value is the same as the one being asked
+        for (int j = 0; j < player_hand.Count; j++)
         {
-            Card aiCard = ai_hand[i];
-            print("click on a card");
-            //player clicks on cards -> check if card value is the same as the one being asked
-            if (aiCard.data.health == playerSelected.GetComponent<Card_data>().health)
+            if (aiCard.data.health == player_hand[j].data.health)
             {
+                print("there was a match");
+                ai_hand.Add(player_hand[j]);
+                player_hand.Remove(player_hand[j]);
+                playerTurn = true;
+                //do something here
+                return;
                 //health is temp, assign number to each card to check if same
-            }
-            //same card? or just same card place in hand?
-            Card hasCard = player_hand[i];
-            if (player_hand.Contains(hasCard))
-            {
-                ai_hand.Add(hasCard);
-                player_hand.Remove(hasCard);
             }
             else
             {
                 Card randCard = deck[Random.Range(0, deck.Count)];
                 deck.Remove(randCard);
                 ai_hand.Add(randCard);
+                playerTurn = true;
             }
         }
-        //check if 4 of a kind, if so add hud.oPoints += 1; & playerTurn = true;
-
+        //check if 4 of a kind, if so add hud.oPoints += 1; & playerTurn = true
     }
 
+   
     public void PlayerTurn()
     {
+        int playerWant = Random.Range(0, player_hand.Count);
+        // ^ change to on click event when I can think
         print("Player Turn :)");
-        if (ai_hand.Contains(hud.WC))
+        Card playerCard = player_hand[playerWant];
+        for (int i = 0; i < ai_hand.Count; i++)
         {
-            ai_hand.Remove(hud.WC);
-            player_hand.Add(hud.WC);
+            if (playerCard.data.health == ai_hand[i].data.health)
+            {
+                ai_hand.Remove(ai_hand[i]);
+                player_hand.Add(ai_hand[i]);
+                return;
+            }
+            else
+            {
+                print("Go Fish. Draw a card and end your turn");
+            }
+
         }
-        else
-        {
-            print("Go Fish. Draw a card and end your turn");
-        }
+        
         
         //check for matches in player_hand
         
@@ -185,7 +196,7 @@ public class GameManager : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if (playerSelect = true)
+        if (playerSelect == true)
         {
             playerSelected = other.gameObject;
         }

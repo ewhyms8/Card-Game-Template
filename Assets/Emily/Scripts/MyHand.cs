@@ -18,14 +18,6 @@ public class MyHand : MonoBehaviour
         m_firstButton.onClick.AddListener(TaskOnClick);
     }
 
-    void Update()
-    {
-        /* if 4 same cards in hand, add to hud.yPoints and remove from hand
-         draw from pile (by click?), hud.remCardNum -= 1
-         add random card from array to hand
-         */
-        
-    }
 
     void TaskOnClick()
     {
