@@ -837,7 +837,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3939043935642653316
 Transform:
   m_ObjectHideFlags: 0
@@ -887,6 +887,7 @@ MonoBehaviour:
   spriteImage: {fileID: 8684640170620416314}
   hasBeenPlayed: 0
   handIndex: 0
+  hud: {fileID: 0}
 --- !u!61 &76324411428454536
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -35,6 +35,12 @@ public class GameManager : MonoBehaviour
 
     public Transform[] myHand; // cardSlots in vid
     public bool[] availableCardSlots;
+
+    public int aiNeeds;
+    public TextMeshProUGUI aiAsks;
+    public TextMeshProUGUI whosTurn;
+    public int oPoints = 0;
+    public int yPoints = 0;
     
 
     private void Awake()
@@ -79,6 +85,7 @@ public class GameManager : MonoBehaviour
          }
          */
         
+        
     }
 
 
@@ -91,6 +98,19 @@ public class GameManager : MonoBehaviour
             temp = deck[whatCard];
             deck.Remove(temp);//might cause issues towards the end of the deck
             player_hand.Add(temp);
+            if (player_hand.Count > 1)
+            {
+                //we do this count-1 times because we don't want to compare temp to the last card in the hand (which is also temp)
+                for (int j = 0; j < player_hand.Count-1; j++)
+                {
+                    if (temp.data.health == player_hand[j].data.health)
+                    {
+                        Match(temp, player_hand[j], yPoints);
+                    }
+                }
+            }
+
+
             //player_deck.Add(temp); 
             temp = null;
             
@@ -98,10 +118,21 @@ public class GameManager : MonoBehaviour
             temp = deck[whatCard];
             deck.Remove(temp);//might cause issues towards the end of the deck
             ai_hand.Add(temp);
+            if (ai_hand.Count > 1)
+            {
+                //we do this count-1 times because we don't want to compare temp to the last card in the hand (which is also temp)
+                for (int k = 0; k < ai_hand.Count-1; k++)
+                {
+                    if (temp.data.health == ai_hand[k].data.health)
+                    {
+                        Match(temp, ai_hand[k], oPoints);
+                        
+                    }
+                }
+            }
             temp = null;
         }
-
-        // move this to update, this only occurs when the func deal is called to which is once :)
+        
         for (int i = 0; i < handSize; i++)
         {
             Card card = Instantiate(player_hand[i], new Vector3(-300 + amount, 60, 0), quaternion.identity);
@@ -112,6 +143,9 @@ public class GameManager : MonoBehaviour
             // I don't think this needs a return; because we want it going constantly
         }
         
+        
+        // move this to update, this only occurs when the func deal is called to which is once :)
+    
     }
 
     public void DrawCard()
@@ -119,6 +153,7 @@ public class GameManager : MonoBehaviour
         if(deck.Count >= 1)
         {
             Card randCard = deck[Random.Range(0, deck.Count)];
+            /*
             for (int i = 0; i < availableCardSlots.Length; i++)
             {
                 if(availableCardSlots[i] == true)
@@ -131,26 +166,32 @@ public class GameManager : MonoBehaviour
                     return;
                 }
             }
+            */
+
+            Instantiate(randCard, new Vector3(-300 + amount + 100, 60, 0), Quaternion.identity);
         }
     }
     
     void AI_Turn()
     {
-        
+        whosTurn.text = "Ai's turn";
         //AiHandSize = 7f;
         int aiWant = Random.Range(0, ai_hand.Count);
         
         Card aiCard = ai_hand[aiWant];
-        print("click on a card");
 
+        aiNeeds = aiCard.data.health;
+        aiAsks.text = "Do you have any " + aiNeeds; 
+        
         //player clicks on cards -> check if card value is the same as the one being asked
         for (int j = 0; j < player_hand.Count; j++)
         {
             if (aiCard.data.health == player_hand[j].data.health)
             {
-                print("there was a match");
+                
                 ai_hand.Add(player_hand[j]);
                 player_hand.Remove(player_hand[j]);
+                Match(aiCard, player_hand[j], oPoints);
                 playerTurn = true;
                 //do something here
                 return;
@@ -164,12 +205,16 @@ public class GameManager : MonoBehaviour
                 playerTurn = true;
             }
         }
+
+        whosTurn.text = null;
         //check if 4 of a kind, if so add hud.oPoints += 1; & playerTurn = true
     }
 
    
     public void PlayerTurn()
     {
+        
+        whosTurn.text = "Your Turn, pick a card you want to ask for";
         int playerWant = Random.Range(0, player_hand.Count);
         // ^ change to on click event when I can think
         print("Player Turn :)");
@@ -188,10 +233,20 @@ public class GameManager : MonoBehaviour
             }
 
         }
-        
-        
+
+        whosTurn.text = null;
         //check for matches in player_hand
-        
+
+    }
+
+    void Match(Card one, Card two, int pointsToChange)
+    {
+        print("matched");
+        //+one.gameObject.SetActive(false);
+        //two.gameObject.SetActive(false);
+        pointsToChange++;
+        print(pointsToChange);
+
     }
 
     private void OnCollisionEnter2D(Collision2D other)

@@ -8,32 +8,30 @@ public class hud : MonoBehaviour
 {
     public TextMeshProUGUI oponentsPoints;
     public TextMeshProUGUI yourPoints;
-    public float oPoints;
-    public float yPoints;
+    
 
     public TextMeshProUGUI deckSizeText;
-    public float deckSize;
-    
+    public int deckSize;
+
     public TextMeshProUGUI aiText;
-    public Card WC;
-    
-    
+    public TextMeshProUGUI aiAsks;
+    public GameManager gm;
+
     // Start is called before the first frame update
     void Start()
     {
-        oPoints = 0;
-        yPoints = 0;
+        gm = FindObjectOfType<GameManager>();
         deckSize = 52;
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        oponentsPoints.text = "Opponents Total Points: " + oPoints;
-        yourPoints.text = "Your Total Points: " + yPoints;
+        oponentsPoints.text = "Opponents Total Points: " + gm.oPoints;
+        yourPoints.text = "Your Total Points: " + gm.yPoints;
         deckSizeText.text = "" + deckSize;
         aiText.text = "waiting on you";
     }
-    
+
 }
