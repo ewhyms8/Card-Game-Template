@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c025b4487bfbb41fca186c7d9d6e18a5, type: 3}
-  m_Name: Giant Isopod
+  m_Name: Costasiella
   m_EditorClassIdentifier: 
-  card_name: Giant Isopod
-  description: Breath through their Legs
-  health: 10
-  cost: 10
-  damage: 10
-  sprite: {fileID: 21300000, guid: 87135323f6c0a4e9b90a7acce147ed9a, type: 3}
-  background: {fileID: 21300000, guid: 2920d3edbd786466e9984bcc3baf0923, type: 3}
+  card_name: Costasiella
+  description: Like living succulents!
+  health: 9
+  cost: 9
+  damage: 9
+  sprite: {fileID: 21300000, guid: b4c3cf345464e4876b7b4c104aaef385, type: 3}
+  background: {fileID: 21300000, guid: c7c7897c11dc248d6accb9207fed809d, type: 3}
