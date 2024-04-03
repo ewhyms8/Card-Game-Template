@@ -7,6 +7,7 @@ using UnityEngine.UI;
 
 public class Card : MonoBehaviour
 {
+    public static Card card;
     public Card_data data;
 
     public string card_name;
@@ -51,9 +52,18 @@ public class Card : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (card != null && card != this)
+        {
+            Destroy(gameObject); //gm.card doesn't work this was also a failed atempt
+            gm.amount -= 50;
+        }
+        else
+        {
+            card = this;
+            DontDestroyOnLoad(this.gameObject);
+        }
     }
-
+    /*
     private void OnMouseDown()
     {
         if (hasBeenPlayed == false)
@@ -68,4 +78,5 @@ public class Card : MonoBehaviour
     {
         //gm.discard_pile.Add(the four cards);
     }
+    */
 }

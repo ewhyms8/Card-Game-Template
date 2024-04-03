@@ -7,6 +7,7 @@ using UnityEngine.UI;
 using TMPro;
 using Unity.Mathematics;
 using Unity.VisualScripting;
+using UnityEditor;
 using Random = UnityEngine.Random;
 
 public class GameManager : MonoBehaviour
@@ -25,23 +26,22 @@ public class GameManager : MonoBehaviour
     
     private int AICard;
     private int handSize = 7;
-    private float amount;
+    public float amount;
     private int AiHandSize;
 
     public bool playerTurn = true;
     public hud hud;
     private bool playerSelect;
     private GameObject playerSelected;
-
-    public Transform[] myHand; // cardSlots in vid
-    public bool[] availableCardSlots;
+    
 
     public int aiNeeds;
     public TextMeshProUGUI aiAsks;
     public TextMeshProUGUI whosTurn;
     public int oPoints = 0;
     public int yPoints = 0;
-    
+
+    public Card card;
 
     private void Awake()
     {
@@ -64,8 +64,7 @@ public class GameManager : MonoBehaviour
        hud = GameObject.FindObjectOfType<hud>();
        PlayerTurn();
     }
-
-    // Update is called once per frame
+    
     void Update()
     {
         if (playerTurn == false)
@@ -73,22 +72,18 @@ public class GameManager : MonoBehaviour
             print("player turn over");
             AI_Turn();
         }
-        /*
-         if (player_hand.Contains or ai_hand.Contains 4 same card.health -> 
-            for (int x = 0; x < handSize; x++)
-            {
-                if card.data.health == othercard.data.health and there are 4
-                {
-                    _hand.Remove(all 4 cards)
-                }
-            }
-         }
-         */
-        
-        
+        for (int i = 0; i < handSize; i++)
+        {
+            //this has to destroy itself in Card.cs because it doesn't like going from gameObject to card or gm to card
+            card = Instantiate(player_hand[i], new Vector3(-300 + amount, 60, 0), quaternion.identity);
+            card.transform.SetParent(_Canvas);
+            amount += 100;
+            player_hand.Remove(card);
+            card = null;
+            // doesn't need return
+        }
     }
-
-
+    
     void Deal()
     {
        // print(deck.Count);
@@ -109,9 +104,6 @@ public class GameManager : MonoBehaviour
                     }
                 }
             }
-
-
-            //player_deck.Add(temp); 
             temp = null;
             
             whatCard = Random.Range(0, deck.Count);
@@ -126,26 +118,11 @@ public class GameManager : MonoBehaviour
                     if (temp.data.health == ai_hand[k].data.health)
                     {
                         Match(temp, ai_hand[k], oPoints);
-                        
                     }
                 }
             }
             temp = null;
         }
-        
-        for (int i = 0; i < handSize; i++)
-        {
-            Card card = Instantiate(player_hand[i], new Vector3(-300 + amount, 60, 0), quaternion.identity);
-            card.transform.SetParent(_Canvas);
-            amount += 100;
-            player_hand.Remove(card);
-            card = null; 
-            // I don't think this needs a return; because we want it going constantly
-        }
-        
-        
-        // move this to update, this only occurs when the func deal is called to which is once :)
-    
     }
 
     public void DrawCard()
@@ -167,7 +144,6 @@ public class GameManager : MonoBehaviour
                 }
             }
             */
-
             Instantiate(randCard, new Vector3(-300 + amount + 100, 60, 0), Quaternion.identity);
         }
     }
@@ -175,27 +151,20 @@ public class GameManager : MonoBehaviour
     void AI_Turn()
     {
         whosTurn.text = "Ai's turn";
-        //AiHandSize = 7f;
         int aiWant = Random.Range(0, ai_hand.Count);
-        
         Card aiCard = ai_hand[aiWant];
-
         aiNeeds = aiCard.data.health;
-        aiAsks.text = "Do you have any " + aiNeeds; 
-        
-        //player clicks on cards -> check if card value is the same as the one being asked
+        aiAsks.text = "Do you have any " + aiNeeds;
         for (int j = 0; j < player_hand.Count; j++)
         {
             if (aiCard.data.health == player_hand[j].data.health)
             {
-                
                 ai_hand.Add(player_hand[j]);
                 player_hand.Remove(player_hand[j]);
                 Match(aiCard, player_hand[j], oPoints);
                 playerTurn = true;
                 //do something here
                 return;
-                //health is temp, assign number to each card to check if same
             }
             else
             {
@@ -205,15 +174,11 @@ public class GameManager : MonoBehaviour
                 playerTurn = true;
             }
         }
-
         whosTurn.text = null;
-        //check if 4 of a kind, if so add hud.oPoints += 1; & playerTurn = true
     }
-
-   
+    
     public void PlayerTurn()
     {
-        
         whosTurn.text = "Your Turn, pick a card you want to ask for";
         int playerWant = Random.Range(0, player_hand.Count);
         // ^ change to on click event when I can think
@@ -231,12 +196,8 @@ public class GameManager : MonoBehaviour
             {
                 print("Go Fish. Draw a card and end your turn");
             }
-
         }
-
         whosTurn.text = null;
-        //check for matches in player_hand
-
     }
 
     void Match(Card one, Card two, int pointsToChange)
