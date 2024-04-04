@@ -26,7 +26,7 @@ public class GameManager : MonoBehaviour
     
     private int AICard;
     private int handSize = 7;
-    public float amount;
+    public int amount = 0;
     private int AiHandSize;
 
     public bool playerTurn = true;
@@ -58,30 +58,23 @@ public class GameManager : MonoBehaviour
 
     // Start is called before the first frame update
     void Start()
-    {
-       Deal();
-       amount = 0;
+    { 
+        Deal();
        hud = GameObject.FindObjectOfType<hud>();
-       PlayerTurn();
+       //PlayerTurn();
     }
     
     void Update()
     {
+       
         if (playerTurn == false)
         {
             print("player turn over");
             AI_Turn();
         }
-        for (int i = 0; i < handSize; i++)
-        {
-            //this has to destroy itself in Card.cs because it doesn't like going from gameObject to card or gm to card
-            card = Instantiate(player_hand[i], new Vector3(-300 + amount, 60, 0), quaternion.identity);
-            card.transform.SetParent(_Canvas);
-            amount += 100;
-            player_hand.Remove(card);
-            card = null;
-            // doesn't need return
-        }
+        
+       
+        
     }
     
     void Deal()
@@ -89,21 +82,31 @@ public class GameManager : MonoBehaviour
        // print(deck.Count);
         for (int i = 0; i < handSize; i++)
         {
+            temp = null;
             whatCard = Random.Range(0, deck.Count);
-            temp = deck[whatCard];
+            temp = Instantiate(deck[whatCard], new Vector3(-300 + amount, 60, 0), quaternion.identity);
             deck.Remove(temp);//might cause issues towards the end of the deck
             player_hand.Add(temp);
+            
+            //this has to destroy itself in Card.cs because it doesn't like going from gameObject to card or gm to card
+           
+            temp.transform.SetParent(_Canvas);
+            amount += 100;
+            
             if (player_hand.Count > 1)
             {
                 //we do this count-1 times because we don't want to compare temp to the last card in the hand (which is also temp)
-                for (int j = 0; j < player_hand.Count-1; j++)
+                for(int j = 0; j < player_hand.Count-1; j++)
                 {
                     if (temp.data.health == player_hand[j].data.health)
                     {
-                        Match(temp, player_hand[j], yPoints);
+                        player_hand.Remove(temp);
+                        player_hand.Remove(player_hand[j]);
+                        Match(temp, player_hand[j], "player");
                     }
                 }
             }
+            
             temp = null;
             
             whatCard = Random.Range(0, deck.Count);
@@ -113,11 +116,11 @@ public class GameManager : MonoBehaviour
             if (ai_hand.Count > 1)
             {
                 //we do this count-1 times because we don't want to compare temp to the last card in the hand (which is also temp)
-                for (int k = 0; k < ai_hand.Count-1; k++)
+                for(int k = 0; k < ai_hand.Count-1; k++)
                 {
                     if (temp.data.health == ai_hand[k].data.health)
                     {
-                        Match(temp, ai_hand[k], oPoints);
+                        Match(temp, ai_hand[k], "ai");
                     }
                 }
             }
@@ -144,6 +147,8 @@ public class GameManager : MonoBehaviour
                 }
             }
             */
+
+
             Instantiate(randCard, new Vector3(-300 + amount + 100, 60, 0), Quaternion.identity);
         }
     }
@@ -161,7 +166,7 @@ public class GameManager : MonoBehaviour
             {
                 ai_hand.Add(player_hand[j]);
                 player_hand.Remove(player_hand[j]);
-                Match(aiCard, player_hand[j], oPoints);
+                Match(aiCard, player_hand[j], "player");
                 playerTurn = true;
                 //do something here
                 return;
@@ -200,13 +205,20 @@ public class GameManager : MonoBehaviour
         whosTurn.text = null;
     }
 
-    void Match(Card one, Card two, int pointsToChange)
+    void Match(Card one, Card two, string playerPoints)
     {
         print("matched");
-        //+one.gameObject.SetActive(false);
-        //two.gameObject.SetActive(false);
-        pointsToChange++;
-        print(pointsToChange);
+        one.gameObject.SetActive(false);
+        two.gameObject.SetActive(false);
+        
+        if (playerPoints == "ai")
+            oPoints++;
+        else
+        {
+            yPoints++;
+        }
+        print(yPoints);
+        print(oPoints);
 
     }
 
@@ -217,4 +229,5 @@ public class GameManager : MonoBehaviour
             playerSelected = other.gameObject;
         }
     }
+    
 }

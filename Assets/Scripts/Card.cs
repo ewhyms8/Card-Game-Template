@@ -52,9 +52,10 @@ public class Card : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        /*
         if (card != null && card != this)
         {
-            Destroy(gameObject); //gm.card doesn't work this was also a failed atempt
+            Destroy(gameObject); //gm.card doesn't work this was also a failed attempt
             gm.amount -= 50;
         }
         else
@@ -62,7 +63,9 @@ public class Card : MonoBehaviour
             card = this;
             DontDestroyOnLoad(this.gameObject);
         }
+        */
     }
+    
     /*
     private void OnMouseDown()
     {
