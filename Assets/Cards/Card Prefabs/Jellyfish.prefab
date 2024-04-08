@@ -360,7 +360,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8312554144279563624
 Transform:
   m_ObjectHideFlags: 0
@@ -410,6 +410,7 @@ MonoBehaviour:
   spriteImage: {fileID: 5979842577290352160}
   hasBeenPlayed: 0
   handIndex: 0
+  hud: {fileID: 0}
 --- !u!61 &-761825169535437822
 BoxCollider2D:
   m_ObjectHideFlags: 0
