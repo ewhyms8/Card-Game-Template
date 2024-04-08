@@ -60,13 +60,12 @@ public class GameManager : MonoBehaviour
     void Start()
     { 
         Deal();
-       hud = GameObject.FindObjectOfType<hud>();
+        hud = GameObject.FindObjectOfType<hud>();
        //PlayerTurn();
     }
     
     void Update()
     {
-       
         if (playerTurn == false)
         {
             print("player turn over");
@@ -88,8 +87,6 @@ public class GameManager : MonoBehaviour
             deck.Remove(temp);//might cause issues towards the end of the deck
             player_hand.Add(temp);
             
-            //this has to destroy itself in Card.cs because it doesn't like going from gameObject to card or gm to card
-           
             temp.transform.SetParent(_Canvas);
             amount += 100;
             
@@ -106,10 +103,9 @@ public class GameManager : MonoBehaviour
                     }
                 }
             }
-            
             temp = null;
             
-            whatCard = Random.Range(0, deck.Count);
+            //same temp? maybe issue
             temp = deck[whatCard];
             deck.Remove(temp);//might cause issues towards the end of the deck
             ai_hand.Add(temp);
@@ -132,24 +128,16 @@ public class GameManager : MonoBehaviour
     {
         if(deck.Count >= 1)
         {
-            Card randCard = deck[Random.Range(0, deck.Count)];
-            /*
-            for (int i = 0; i < availableCardSlots.Length; i++)
+            temp = deck[Random.Range(0, deck.Count)];
+            
+            player_hand.Add(temp);
+            deck.Remove(temp);
+            hud.deckSize -= 1;
+            for (int i = 0; i < player_hand.Count; i++)
             {
-                if(availableCardSlots[i] == true)
-                {
-                    randCard = Instantiate(randCard, myHand[i].position, quaternion.identity);
-                    randCard.handIndex = i;
-                    availableCardSlots[i] = false;
-                    player_hand.Add(temp);
-                    deck.Remove(randCard); //<- this will not be rand, it will be a group of 4
-                    return;
-                }
+                Instantiate(temp, new Vector3(-300 + amount + 100, 60, 0), Quaternion.identity);
             }
-            */
-
-
-            Instantiate(randCard, new Vector3(-300 + amount + 100, 60, 0), Quaternion.identity);
+            playerTurn = false;
         }
     }
     
@@ -210,6 +198,7 @@ public class GameManager : MonoBehaviour
         print("matched");
         one.gameObject.SetActive(false);
         two.gameObject.SetActive(false);
+        // add and remove from lists, discard
         
         if (playerPoints == "ai")
             oPoints++;
