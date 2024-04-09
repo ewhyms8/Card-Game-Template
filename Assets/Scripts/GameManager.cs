@@ -26,7 +26,6 @@ public class GameManager : MonoBehaviour
     
     private int AICard;
     private int handSize = 7;
-    public int amount = 0;
     private int AiHandSize;
 
     public bool playerTurn = true;
@@ -62,6 +61,7 @@ public class GameManager : MonoBehaviour
         Deal();
         hud = GameObject.FindObjectOfType<hud>();
        //PlayerTurn();
+       DrawCard();
     }
     
     void Update()
@@ -83,12 +83,12 @@ public class GameManager : MonoBehaviour
         {
             temp = null;
             whatCard = Random.Range(0, deck.Count);
-            temp = Instantiate(deck[whatCard], new Vector3(-300 + amount, 60, 0), quaternion.identity);
+            temp = Instantiate(deck[whatCard], new Vector3(-300 + hud.amount, 60, 0), quaternion.identity);
             deck.Remove(temp);//might cause issues towards the end of the deck
             player_hand.Add(temp);
             
             temp.transform.SetParent(_Canvas);
-            amount += 100;
+            hud.amount += 100;
             
             if (player_hand.Count > 1)
             {
@@ -99,7 +99,7 @@ public class GameManager : MonoBehaviour
                     {
                         player_hand.Remove(temp);
                         player_hand.Remove(player_hand[j]);
-                        Match(temp, player_hand[j], "player");
+                        //Match(temp, player_hand[j], "player");
                     }
                 }
             }
@@ -116,7 +116,7 @@ public class GameManager : MonoBehaviour
                 {
                     if (temp.data.health == ai_hand[k].data.health)
                     {
-                        Match(temp, ai_hand[k], "ai");
+                      //  Match(temp, ai_hand[k], "ai");
                     }
                 }
             }
@@ -126,6 +126,8 @@ public class GameManager : MonoBehaviour
 
     public void DrawCard()
     {
+        
+        print("Drawing Card");
         if(deck.Count >= 1)
         {
             temp = deck[Random.Range(0, deck.Count)];
@@ -135,7 +137,7 @@ public class GameManager : MonoBehaviour
             hud.deckSize -= 1;
             for (int i = 0; i < player_hand.Count; i++)
             {
-                Instantiate(temp, new Vector3(-300 + amount + 100, 60, 0), Quaternion.identity);
+                Instantiate(temp, new Vector3(-300 + hud.amount + 100, 60, 0), Quaternion.identity);
             }
             playerTurn = false;
         }
@@ -147,14 +149,14 @@ public class GameManager : MonoBehaviour
         int aiWant = Random.Range(0, ai_hand.Count);
         Card aiCard = ai_hand[aiWant];
         aiNeeds = aiCard.data.health;
-        aiAsks.text = "Do you have any " + aiNeeds;
+        aiAsks.text = "Do you have any "  + aiNeeds ;
         for (int j = 0; j < player_hand.Count; j++)
         {
             if (aiCard.data.health == player_hand[j].data.health)
             {
                 ai_hand.Add(player_hand[j]);
                 player_hand.Remove(player_hand[j]);
-                Match(aiCard, player_hand[j], "player");
+                //Match(aiCard, player_hand[j], "player");
                 playerTurn = true;
                 //do something here
                 return;
@@ -192,7 +194,8 @@ public class GameManager : MonoBehaviour
         }
         whosTurn.text = null;
     }
-
+    
+    /*
     void Match(Card one, Card two, string playerPoints)
     {
         print("matched");
@@ -210,7 +213,7 @@ public class GameManager : MonoBehaviour
         print(oPoints);
 
     }
-
+    */
     private void OnCollisionEnter2D(Collision2D other)
     {
         if (playerSelect == true)

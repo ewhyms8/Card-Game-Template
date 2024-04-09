@@ -14,10 +14,10 @@ public class Deck : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (myHand.cardAddedToHand == true)
-        {
-            Invoke("MoveToPlayerHand", 2f);
-        }
+        //if (myHand.cardAddedToHand == true)
+        //{
+       //     Invoke("MoveToPlayerHand", 2f);
+       // }
     }
 
     void MoveToPlayerHand()

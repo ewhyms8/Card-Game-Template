@@ -17,12 +17,14 @@ public class hud : MonoBehaviour
     public TextMeshProUGUI aiAsks;
     public GameManager gm;
 
+    public int amount;
+
     // Start is called before the first frame update
     void Start()
     {
         gm = FindObjectOfType<GameManager>();
         deckSize = 52;
-
+        amount = 0;
     }
 
     // Update is called once per frame

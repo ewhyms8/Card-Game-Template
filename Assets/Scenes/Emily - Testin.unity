@@ -157,7 +157,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 299, y: -66}
+  m_AnchoredPosition: {x: 299, y: -35}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &358040728
@@ -488,6 +488,7 @@ MonoBehaviour:
   aiText: {fileID: 1394423014}
   aiAsks: {fileID: 1923578378}
   gm: {fileID: 0}
+  amount: 0
 --- !u!1 &481793384
 GameObject:
   m_ObjectHideFlags: 0
@@ -1679,7 +1680,6 @@ MonoBehaviour:
   discard_pile: []
   _Canvas: {fileID: 481793388}
   temp: {fileID: 0}
-  amount: 0
   playerTurn: 1
   hud: {fileID: 470828252}
   aiNeeds: 5
@@ -1737,7 +1737,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 313, y: 148}
+  m_AnchoredPosition: {x: 299, y: 90.671}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1923578378
@@ -1849,6 +1849,7 @@ GameObject:
   - component: {fileID: 2145011639}
   - component: {fileID: 2145011638}
   - component: {fileID: 2145011637}
+  - component: {fileID: 2145011640}
   m_Layer: 5
   m_Name: Deck
   m_TagString: Untagged
@@ -1969,6 +1970,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2145011635}
   m_CullTransparentMesh: 1
+--- !u!114 &2145011640
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2145011635}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2fc9e990a92504ffbbd387bc742ceda8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myHand: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
